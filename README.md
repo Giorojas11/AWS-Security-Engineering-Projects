@@ -14,7 +14,7 @@ These projects demonstrate practical skills in:
 
 ### **1. Secure S3 Bucket Deployment with Terraform**
 Deploying a hardened S3 bucket with public access blocking, Object Lock retention, MFA-enforced CLI access, and Terraform automation.  
-➡️ `/S3-Terraform-Secure-Bucket`
+➡️ `/S3-Bucket-Terraform`
 
 ---
 Each project reinforces cloud security fundamentals while building real, hands-on experience with AWS services used by security analysts, cloud engineers, and SOC teams.
