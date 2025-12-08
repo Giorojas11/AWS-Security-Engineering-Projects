@@ -17,8 +17,7 @@
 8. VPC Peering
 9. S3 Access & VPC Endpoints
 10. Monitoring with CloudWatch
-11. Terraform Project Structure
-12. Lessons Learned & Next Steps
+11. Lessons Learned & Next Steps
 
 ## 1. Project Overview
 This project sets up a secure, multi-tier AWS network environment:
@@ -539,4 +538,141 @@ As mentioned before, I had previously set up the routing, NACLs, and Security Gr
 I used OpenSSH previously, but will be trying EC2 Instance Connect to connect to my Main VPC - Public EC2. To test VPC Peering works, I sent pings using ICMP from my first public server, Main VPC - Public EC2 to VPC 2 - EC2. 
 
 ## 9. S3 Access & VPC Endpoints
-I would now like to securely access my S3 Bucket I made in "project" from my VPCs. Some AWS services don't live in VPCs and require going through the internet to access. VPC Endpoint allows you to establish a secure connection from Endpoint to your services without going through the internet.
+I would now like to securely access my <a href=https://github.com/Giorojas11/AWS-Projects/tree/main/S3-Bucket-Terraform>S3 Bucket</a> from my VPCs. Some AWS services don't live in VPCs and require going through the internet to access. VPC Endpoint allows you to establish a secure connection from Endpoint to your services without going through the internet.
+
+I created an endpoint for Main VPC and added routing using route table ids, for my Main VPC - private and public route tables.
+```
+resource "aws_vpc_endpoint" "s3_endpoint" {
+  vpc_id       = aws_vpc.main_vpc.id
+  service_name = "com.amazonaws.us-east-2.s3"
+  vpc_endpoint_type = "Gateway"
+
+  route_table_ids = [
+    aws_route_table.private_route_table.id,
+    aws_route_table.route_table.id
+   ]
+
+  tags = {
+    Environment = "MAIN VPC"
+  }
+}
+```
+I created the following bucket policy that denies ALL traffic to my S3 Bucket and only allows access from my Enpoint and GROJAS-IAM-ADMIN account.
+```
+resource "aws_s3_bucket_policy" "vpc_endpoint" {
+  bucket = aws_s3_bucket.my_bucket.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid       = "Deny All"
+        Effect    = "Deny"
+        Principal = "*"
+        Action    = "s3:*"
+        Resource  = [
+            "${aws_s3_bucket.my_bucket.arn}",
+            "${aws_s3_bucket.my_bucket.arn}/*"
+        ]
+        Condition = {
+            StringNotEquals = {
+                "aws:SourceVpce"   = "${aws_vpc_endpoint.s3_endpoint.id}"
+                "aws:PrincipalArn" = [
+                    "arn:aws:iam::660410403267:user/GROJAS-IAM-ADMIN"
+                ]
+            }
+        }
+      }
+    ]
+  })
+}
+```
+### Connectivity Test:
+To confirm I can reach my S3 Bucket, I connected to my Public EC2 server and successfully downloaded image.png from my S3 Bucket and saved it to /home/ec2-user/
+
+But is the bucket policy fully in effect? Yes, when logged into my Root account, I cannot view my bucket's objects and receive error messages. When I am signed into GROJAS-IAM-USER, I am able to view S3 Bucket's content: image.png.
+
+The image:
+
+## 10. Monitoring with CloudWatch
+Now that my network is set up, I need a way to monitor and log network traffic for anomalies, malicious attacks, resource usage, etc. 
+
+I created a Log Group, a new IAM role and policy for flow logs, and attached these to my VPCs for ALL traffic types. I was able to confirm logs were being created for network traffic.
+```
+# VPC CloudWatch Log Group
+resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
+    name              = "/aws/vpc/flow-logs"
+    retention_in_days = 30  
+}
+
+# IAM Role for VPC Flow Logs
+resource "aws_iam_role" "vpc_flow_logs_role" {
+    name = "VPCFlowLogsRole"
+
+    assume_role_policy = jsonencode({
+        Version   = "2012-10-17"
+        Statement = [
+            {
+                Action    = "sts:AssumeRole"
+                Effect    = "Allow"
+                Principal = {
+                    Service = "vpc-flow-logs.amazonaws.com"
+                }
+            }
+        ]
+    })
+}
+
+# IAM Policy for VPC Flow Logs
+resource "aws_iam_role_policy" "vpc_flow_logs_policy" {
+    name = "vpc-flow-logs-policy"
+    role = aws_iam_role.vpc_flow_logs_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+        Effect = "Allow"
+        Action = [
+            "logs:CreateLogStream",
+            "logs:PutLogEvents",
+            "logs:DescribeLogGroups",
+            "logs:DescribeLogStreams"
+      ]
+      Resource = "*"
+    }]
+  })
+}
+
+# MAIN VPC Flow Logs
+resource "aws_flow_log" "main_vpc_flow" {
+    vpc_id               = aws_vpc.main_vpc.id
+    log_destination      = aws_cloudwatch_log_group.vpc_flow_logs.arn
+    log_destination_type = "cloud-watch-logs"
+    traffic_type         = "ALL"
+    iam_role_arn         = aws_iam_role.vpc_flow_logs_role.arn
+}
+
+# VPC 2 Flow Logs
+resource "aws_flow_log" "vpc2_flow" {
+    vpc_id               = aws_vpc.vpc2.id
+    log_destination      = aws_cloudwatch_log_group.vpc_flow_logs.arn
+    log_destination_type = "cloud-watch-logs"
+    traffic_type         = "ALL"
+    iam_role_arn         = aws_iam_role.vpc_flow_logs_role.arn
+}
+```
+### Testing
+When pinging from VPC to VPC, logs are created for the ICMP traffic.
+
+## 12. Lessons Learned & Next Steps
+- VPCs require careful planning of CIDR blocks and routing
+- Security is layered: Security Groups, NACLs, and IAM policies
+- Jump hosts and proxy SSH can be replaced with SSM for production
+- Terraform organization is critical for maintainability
+- Monitoring with CloudWatch provides insight into network traffic
+
+Next Steps:
+- Add additional subnets in different AZs for redundancy and isolated subnets for sensitive data
+- Implement VPC endpoints for other AWS services
+- Utilize other AWS services in my homelab like Lambda Functions and GuardDuty
+- Integrate CloudWatch alarms and dashboards for proactive monitoring of attacks - SSH Brute Force, anomalous network traffic, malicious source IPs, etc. 
