@@ -15,7 +15,11 @@ These projects demonstrate practical skills in:
 ## **1. Secure S3 Bucket Deployment with Terraform** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/S3-Bucket-Terraform"> Link </a>
 Deploying a S3 bucket with public access blocking, data retention, MFA-enforcement, CLI use, and Terraform automation.  
 
+## **2. Cloud Networking using Terraform** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/S3-Bucket-Terraform"> Link </a>
+Built a cloud network from the ground up, using my knowledge in cloud and network security.
+
+
 ---
-Each project reinforces cloud security fundamentals while building real, hands-on experience with AWS services used by security analysts, cloud engineers, and SOC teams.
+Each project reinforces cloud security fundamentals while building real, hands-on experience with AWS services used by security analysts, cloud engineers, devsecops, etc.
 
 
