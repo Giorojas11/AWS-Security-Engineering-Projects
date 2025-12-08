@@ -237,11 +237,6 @@ resource "aws_network_acl_association" "public_acl_assoc" {
 For my private subnet, I am allowing SSH connections from my public subnet. For now, this will allow me to connect from my public EC2 to my private EC2 instance for testing but I plan to add a jump server or use SSM for SSH access to my private EC2. I'm also allowing return traffic and all outbound traffic.
 
 ```
-resource "aws_network_acl_association" "public_acl_assoc_2" {
-    subnet_id       = aws_subnet.public_subnet_2.id
-    network_acl_id  = aws_network_acl.public_acl_2.id
-}
-
 resource "aws_network_acl" "private_acl" {
     vpc_id = aws_vpc.main_vpc.id
    
