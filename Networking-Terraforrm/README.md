@@ -6,18 +6,18 @@
 1. [Project Overview](#1-project-overview)
 2. [VPC Creation](#2-vpc-creation)
 3. [Subnet](#3-subnet)
-   - Public Subnet & Internet Gateway
-   - Private Subnet & NAT
+   - [Public Subnet & Internet Gateway](#public-subnet--internet-gateway)
+   - [Private Subnet & NAT](#private-subnet--nat)
 4. [Routing](#4-routing)
 5. [Network Access Control Lists](#5-network-access-control-lists)
 6. [EC2 Instances](#6-ec2-instances)
-   - Public EC2
-   - Private EC2
+   - [Public EC2](#public-ec2)
+   - [Private EC2](#private-ec2)
 7. [Security Groups](#7-security-groups)
 8. [VPC Peering](#8-vpc-peering)
-9. [S3 Access & VPC Endpoints](#9-s3-access-&-vpc-endpoints)
+9. [S3 Access & VPC Endpoints](#9-s3-access--vpc-endpoints)
 10. [Monitoring with CloudWatch](#10-monitoring-with-cloudwatch)
-11. [Lessons Learned & Next Steps](#11-lessons-learned-&-next-steps)
+11. [Lessons Learned & Next Steps](#11-lessons-learned--next-steps)
 
 ## 1. Project Overview
 This project sets up a secure, multi-tier AWS network environment using Terraform:
