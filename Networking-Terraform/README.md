@@ -645,7 +645,7 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
 <img width="911" height="97" alt="s3_ec2" src="https://github.com/user-attachments/assets/f07dd97e-938c-4e94-b4fb-e8d3aa15c7da" />
 
 
-The following bucket policy denies ALL traffic to the S3 Bucket and only allows access from the VPC Enpoint and GROJAS-IAM-ADMIN account.
+The following bucket policy denies ALL traffic to the S3 Bucket and only allows access from the VPC endpoint and GROJAS-IAM-ADMIN account (required for Terraform).
 
 
 ```
