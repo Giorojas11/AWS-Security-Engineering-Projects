@@ -618,7 +618,7 @@ resource "aws_vpc_peering_connection" "MAIN_to_VPC_2" {
 <img width="1650" height="726" alt="peering vpc" src="https://github.com/user-attachments/assets/296e7189-6cf2-47dd-a65f-c1db61bb8791" />
 
 ### Connectivity Test:
-I used OpenSSH previously, so I will be trying EC2 Instance Connect to connect to Main VPC - Public EC2. To test VPC Peering works, I sent pings from Main VPC - Public EC2 to VPC 2 - Public EC2. 
+I used OpenSSH previously, so I will be trying EC2 Instance Connect to connect. To test VPC Peering works, I sent pings from Main VPC - Public EC2 to VPC 2 - Public EC2 using their private IP addresses. 
 
 <img width="945" height="660" alt="ping_EC2s_connected" src="https://github.com/user-attachments/assets/35dfc5ca-b0c5-45d1-a1e2-acc100945457" />
 
