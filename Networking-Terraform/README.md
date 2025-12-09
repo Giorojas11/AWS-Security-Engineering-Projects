@@ -24,8 +24,8 @@
 This project sets up a secure, multi-tier AWS network environment using Terraform:
 - Two VPCs with public and private subnets
 - Defense-in-Depth - NACLs, Security Groups, IAM policies
-- SSH + RSA Key Pair
-- Routing using route tables
+- SSH + RSA Key Pair(s)
+- Routing 
 - NAT Gateway for outbound internet access for private subnet
 - Internet Gateway for inbound outbound internet access
 - VPC peering for private communication between VPCs
