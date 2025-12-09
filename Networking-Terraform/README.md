@@ -434,10 +434,9 @@ From the public EC2, I attempted to SSH using the private EC2's key pair. Unique
 
 ## 7. Security Groups
 Security Groups are similar to NACLs in that they create inbound and outbound rules for resources. Two security groups are needed for the public EC2 and the private EC2.
-
 This provides defense-in-depth and hardening by providing layers to my network security when used with NACLs.
 
-The public and private security groups have a similar layouts to NACLs. Since they operate at the resource level, the biggest difference is that they need to be associated with the EC2 instances instead of a subnet.
+The public and private security groups have a similar layout to the NACLs. Since they operate at the resource level, the biggest difference is that they need to be associated with the EC2 instances instead of a subnet.
 
 Public EC2:
 ```
