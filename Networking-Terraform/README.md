@@ -679,11 +679,13 @@ resource "aws_s3_bucket_policy" "vpc_endpoint" {
 ```
 
 ### Connectivity Test:
-To test connectivity, I connected to my Public EC2 server and successfully downloaded image.png from the S3 Bucket and saved it to /home/ec2-user/.
+To test connectivity, I connected to my Public EC2 server and successfully downloaded `image.png` from the S3 Bucket and saved it to `/home/ec2-user/`.
+
+
 <img width="942" height="266" alt="img_download" src="https://github.com/user-attachments/assets/03005b5a-2a81-4e6a-8a7b-f01e8c70fd8c" />
 
 
-But is the bucket policy fully in effect? Yes, when logged into the Root account, I cannot view the bucket's objects and receive error messages. When signed into GROJAS-IAM-USER, I am able to view S3 Bucket's object: image.png.
+But is the bucket policy fully in effect? Yes, when logged into the Root account, I cannot view the bucket's objects and receive error messages. When signed into GROJAS-IAM-USER, I am able to view S3 Bucket's object: `image.png`.
 
 <img width="624" height="668" alt="access_error_root_acct" src="https://github.com/user-attachments/assets/d749be2d-c870-4422-8aaf-d39829f19c35" />
 
