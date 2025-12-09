@@ -204,13 +204,13 @@ resource "aws_route_table_association" "private_rt_assoc" {
 ```
 
 ## 5. Network Access Control Lists
-Network Access Control Lists (NACLs) manage traffic at the Layer 3 - Network. They provide subnet-level control over inbound and outbound traffic.
+Network Access Control Lists (NACLs) manage traffic at the Network layer (L3). They provide subnet-level control over inbound and outbound traffic.
 
 Public Subnet
 Allow: 
 - HTTPS
 - SSH
-- ephemeral response traffic
+- Ephemeral response traffic
 - VPC Peering to VPC 2
 - All outbound traffic.
 
@@ -279,7 +279,7 @@ resource "aws_network_acl" "public_acl" {
 
 <img width="1662" height="668" alt="acl_outbound" src="https://github.com/user-attachments/assets/245d9e04-5767-4b0f-9741-7be9cb01a185" />
 
-In an actual production environment I would change my SSH rule to only allow connections from specific, IP Ranges and may allow HTTP depending on the needs of my EC2 instance.
+In an actual production environment I would change my SSH rule to only allow connections from specific IP Ranges and may allow HTTP depending on the needs of my EC2 instance.
 
 
 ```
@@ -292,7 +292,7 @@ resource "aws_network_acl_association" "public_acl_assoc" {
 Private Subnet
 Allow: 
 - SSH from public subnet
-- ephemeral return traffic
+- Ephemeral return traffic
 - Allow outbound traffic.
 
 
