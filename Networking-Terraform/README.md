@@ -67,7 +67,7 @@ The public subnet hosts resources that need direct internet access.
 - Public IP assignment: Enabled
 
 Key points:
-- The Internet Gateway enables inbound and outbound internet access.
+- The internet gateway enables inbound and outbound internet access.
 - The route table sends 0.0.0.0/0 traffic to the IGW.
 
 
@@ -142,7 +142,7 @@ resource "aws_nat_gateway" "NAT" {
 ## 4. Routing
 Route tables determine how network traffic flows.
 
-For the public subnet, the route table sends traffic outbound to the Internet gateway. and sends traffic to VPC 2, which will be used for the VPC Peering connection.
+For the public subnet, the route table sends traffic outbound to the internet gateway and sends traffic to VPC 2, which will be used for the VPC Peering connection.
 
 
 ```
