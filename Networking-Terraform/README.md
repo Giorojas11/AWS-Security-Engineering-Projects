@@ -165,8 +165,6 @@ resource "aws_route_table" "route_table" {
 }
 ```
 
-<img width="693" height="604" alt="rt_and_assoc" src="https://github.com/user-attachments/assets/73176d82-d00b-4b0a-931d-4b224e6ba721" />
-
 
 The route table was tied to the public subnet using route table association.
 
@@ -177,6 +175,11 @@ resource "aws_route_table_association" "public_rt_assoc" {
     route_table_id = aws_route_table.route_table.id
 }
 ```
+
+
+<img width="693" height="604" alt="rt_and_assoc" src="https://github.com/user-attachments/assets/73176d82-d00b-4b0a-931d-4b224e6ba721" />
+
+
 This route table routes outbound traffic to the NAT gateway for outbound internet access from the private subnet.
 
 
