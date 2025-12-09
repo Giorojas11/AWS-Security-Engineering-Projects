@@ -485,6 +485,7 @@ resource "aws_security_group" "SG-public" {
 
 <img width="1616" height="660" alt="EC2_SG" src="https://github.com/user-attachments/assets/6b71d45b-72db-464e-b2e9-7b0110726914" />
 
+
 Private EC2:
 ```
 resource "aws_security_group" "SG-private" {
