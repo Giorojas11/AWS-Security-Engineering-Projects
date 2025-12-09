@@ -273,21 +273,20 @@ resource "aws_network_acl" "public_acl" {
         Name = "Public NACL"
     }
 }
-```
 
-<img width="1656" height="710" alt="ACL_inbound" src="https://github.com/user-attachments/assets/387469e9-873d-4825-8d27-481b9109f112" />
-
-<img width="1662" height="668" alt="acl_outbound" src="https://github.com/user-attachments/assets/245d9e04-5767-4b0f-9741-7be9cb01a185" />
-
-In an actual production environment I would change my SSH rule to only allow connections from specific IP Ranges and may allow HTTP depending on the needs of my EC2 instance.
-
-
-```
 resource "aws_network_acl_association" "public_acl_assoc" {
     subnet_id       = aws_subnet.public_subnet.id
     network_acl_id  = aws_network_acl.public_acl.id
 }
 ```
+
+
+<img width="1656" height="710" alt="ACL_inbound" src="https://github.com/user-attachments/assets/387469e9-873d-4825-8d27-481b9109f112" />
+
+<img width="1662" height="668" alt="acl_outbound" src="https://github.com/user-attachments/assets/245d9e04-5767-4b0f-9741-7be9cb01a185" />
+
+
+In an actual production environment I would change my SSH rule to only allow connections from specific IP Ranges and may allow HTTP depending on the needs of my EC2 instance.
 
 Private Subnet
 Allow: 
