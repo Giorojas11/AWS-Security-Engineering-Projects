@@ -428,9 +428,9 @@ resource "local_file" "private_key_file" {
 #### Connectivity Test:
 From the public EC2, I attempted to SSH using the private EC2's key pair. Unique key pairs prevents full compromise of both EC2s if the public EC2 were compromised. The connectivity test was unsuccessful. After some research I learned I could connect using OpenSSH. I added my private keys in ssh-agent and used ProxyJump to successfully SSH to my private EC2.
 
-<img width="646" height="331" alt="ec2-key-pair" src="https://github.com/user-attachments/assets/6f8c2238-9ed0-4044-bcf1-7a8e43555c5c" />
 
 <img width="1062" height="343" alt="ssh_to_prvEC2_troubleshooting" src="https://github.com/user-attachments/assets/6b5fc5d5-548a-43d2-be20-384011a1584e" />
+
 
 ## 7. Security Groups
 Security Groups are similar to NACLs in that they create inbound and outbound rules for resources. Two security groups are needed for the public EC2 and the private EC2.
