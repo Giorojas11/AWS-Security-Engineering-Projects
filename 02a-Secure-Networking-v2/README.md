@@ -6,15 +6,15 @@ This is a major refinement of my previous my network architecture and refactorin
 
 ## Table of Contents
 1. [Network Diagram](#network-diagram)
-   1a. [Before](before)
-   1b. [After](after)
+   - [Before](#before)
+   - [After](#after)
 2. [Key Enhancments](key-enhancements)
-   2a. [Multi-AZ Deployment](#1-multi-az-deployment)
-   2b. [Inclusion of the Isolated Subnet](#2-inclusion-of-the-isolated-subnet)
-   2c. [Explicit Routing, NACLs, & Security Groups](#3-explicit-routing-nacls--security-groups)
-   2d. [Centralized Network Visibility & Logging](#4-centralized-network-visibility--logging)
-   2e. [Scalable Terraform Naming & Structure](#5-scalable-terraform-naming--structure)
-   2f. [Security-Ready Archtitecture](#6-security-ready-architecture)
+   - [Multi-AZ Deployment](#1-multi-az-deployment)
+   - [Inclusion of the Isolated Subnet](#2-inclusion-of-the-isolated-subnet)
+   - [Explicit Routing, NACLs, & Security Groups](#3-explicit-routing-nacls--security-groups)
+   - [Centralized Network Visibility & Logging](#4-centralized-network-visibility--logging)
+   - [Scalable Terraform Naming & Structure](#5-scalable-terraform-naming--structure)
+   - [Security-Ready Archtitecture](#6-security-ready-architecture)
 
 ## Network Diagram
   ### Before
