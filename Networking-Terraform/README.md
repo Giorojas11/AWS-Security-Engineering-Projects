@@ -1,4 +1,4 @@
-# AWS Networking Project using Terraform
+# AWS Secure Networking
 
 ### This project demonstrates building a secure, multi-VPC AWS environment using Terraform. The network includes public and private subnets, gateways, route tables, security groups, EC2 instances, NACLs, VPC peering, S3 Bucket connectivity using VPC Endpoint, and CloudWatch monitoring.
 ------------------------------------------
