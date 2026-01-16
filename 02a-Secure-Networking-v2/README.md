@@ -471,12 +471,21 @@ resource "aws_network_acl" "prod_use1_nacl_private_a" {
    
     # Allow ephemeral response traffic (1024-65535)
     ingress {
-        rule_no    = 110
+        rule_no    = 100
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
         from_port  = 1024
         to_port    = 65535
+    }
+
+    ingress {
+        rule_no    = 110
+        protocol   = "-1"
+        action     = "allow"
+        cidr_block = var.prod_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
     }
 
     # Allow all outbound for Internet access from NAT
@@ -502,12 +511,12 @@ resource "aws_network_acl_association" "prod_use1_nacl_private_a_assoc" {
 resource "aws_network_acl" "prod_use1_nacl_isolated_a" {
     vpc_id = aws_vpc.prod_use1_vpc.id
 
-    # Allow VPC traffic
+    # Allow private subnet traffic
     ingress {
         rule_no    = 100
         protocol   = "-1"
         action     = "allow"
-        cidr_block = var.prod_vpc_cidr_block
+        cidr_block = aws_subnet.prod_use1_private_a.cidr_block
         from_port  = 0
         to_port    = 0
     }
@@ -522,12 +531,12 @@ resource "aws_network_acl" "prod_use1_nacl_isolated_a" {
         to_port    = 0
     }
 
-    # Outbound - allow VPC
+    # Outbound - private subnet traffic
     egress {
         rule_no    = 100
         protocol   = "-1"
         action     = "allow"
-        cidr_block = var.prod_vpc_cidr_block
+        cidr_block = aws_subnet.prod_use1_private_a.cidr_block
         from_port  = 0
         to_port    = 0
     }
@@ -633,12 +642,21 @@ resource "aws_network_acl" "prod_use1_nacl_private_b" {
    
     # Allow ephemeral response traffic (1024-65535)
     ingress {
-        rule_no    = 110
+        rule_no    = 100
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
         from_port  = 1024
         to_port    = 65535
+    }
+
+    ingress {
+        rule_no    = 110
+        protocol   = "-1"
+        action     = "allow"
+        cidr_block = var.prod_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
     }
 
     # Allow all outbound for Internet access from NAT
@@ -664,12 +682,12 @@ resource "aws_network_acl_association" "prod_use1_nacl_private_b_assoc" {
 resource "aws_network_acl" "prod_use1_nacl_isolated_b" {
     vpc_id = aws_vpc.prod_use1_vpc.id
 
-    # Allow VPC traffic
+    # Allow private subnet traffic
     ingress {
         rule_no    = 100
         protocol   = "-1"
         action     = "allow"
-        cidr_block = var.prod_vpc_cidr_block
+        cidr_block = aws_subnet.prod_use1_private_b.cidr_block
         from_port  = 0
         to_port    = 0
     }
@@ -684,12 +702,12 @@ resource "aws_network_acl" "prod_use1_nacl_isolated_b" {
         to_port    = 0
     }
 
-    # Outbound - allow VPC
+    # Outbound - private subnet traffic
     egress {
         rule_no    = 100
         protocol   = "-1"
         action     = "allow"
-        cidr_block = var.prod_vpc_cidr_block
+        cidr_block = aws_subnet.prod_use1_private_b.cidr_block
         from_port  = 0
         to_port    = 0
     }
@@ -930,14 +948,14 @@ resource "aws_security_group" "prod_use1_sg_isolated_a" {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
-        cidr_blocks = [aws_vpc.prod_use1_vpc.cidr_block]
+        cidr_blocks = [aws_subnet.prod_use1_private_a.cidr_block]
     }
 
     egress {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
-        cidr_blocks = [aws_vpc.prod_use1_vpc.cidr_block]
+        cidr_blocks = [aws_subnet.prod_use1_private_a.cidr_block]
     }
 
     tags = {
@@ -1007,14 +1025,14 @@ resource "aws_security_group" "prod_use1_sg_isolated_b" {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
-        cidr_blocks = [aws_vpc.prod_use1_vpc.cidr_block]
+        cidr_blocks = [aws_subnet.prod_use1_private_b.cidr_block]
     }
     
     egress {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
-        cidr_blocks = [aws_vpc.prod_use1_vpc.cidr_block]
+        cidr_blocks = [aws_subnet.prod_use1_private_b.cidr_block]
     }
 
     tags = {
