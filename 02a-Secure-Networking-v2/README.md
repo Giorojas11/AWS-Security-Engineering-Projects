@@ -36,7 +36,7 @@ The addition of isolated subnets enforces stricter boundaires between public-fac
 ### 3. Explicit Routing, NACLs, & Security Groups
 I continued the network segmentation of my previous secure networking project and provided the new subnets with their own route tables, network ACLs, and security groups. I also provided another NAT gateway for the additional AZ following the high availability process.
 
-### 4. Centralized Network Visibilty & Logging
+### 4. Centralized Network Visibility & Logging
 VPC Flow Logs were previously set up and now include the new subnets.
 
 ### 5. Scalable Terraform Naming & Structure
