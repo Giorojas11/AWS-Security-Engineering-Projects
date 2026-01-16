@@ -1,22 +1,31 @@
-# AWS Cloud Security Projects
+# AWS Security Engineering
 
-This repository contains my hands-on AWS projects focused on cloud security, automation, and Infrastructure-as-Code (IaC). Each project is stored in its own subfolder and includes a full write-up, code, security principles applied, and lessons learned.
+This repository documents a production-oriented AWS Security Engineering program designed to demonstrate real-world cloud security skills across governance, prevention, detection, response, and resilience.
 
-These projects demonstrate practical skills in:
-- Terraform & automation
-- IAM identity and access management
-- Secure configuration and cloud hardening
-- Threat reduction and cloud governance
+Rather than a single monolithic lab, this project is composed of domain-focused mini projects. Each mini project is independently valuable, and produces artifacts suitable for portfolio review, technical interviews, and certification alignment.
+
+All infrastructure is built exclusively with Terraform, following least-privilege, infrastructure-as-code, and security-by-design principles.
+
+## Program Goals
+
+Build enterprise-grade AWS security architecture from the ground up.
+
+Demonstrate security engineering decision-making, not just service usage.
+
+Generate real detection and incident response telemetry.
+
+Validate controls through intentional attack simulation.
+
+Produce a reviewable, defensible portfolio aligned with industry roles.
+
+This program is intentionally designed to mirror how modern cloud security environments are built and operated.
 
 ---
 
 ## 📁 Project Index
 
-## **1. Secure S3 Bucket Deployment with Terraform** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/S3-Bucket-Terraform"> Link </a>
-Deploying a S3 bucket with public access blocking, data retention, MFA-enforcement, CLI use, and Terraform automation.  
-
-## **2. Cloud Networking using Terraform** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/Networking-Terraform"> Link </a>
-Built a cloud network from the ground up, using my knowledge in cloud and network security.
+### **2. Secure Networking** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/Networking-Terraform"> Link </a>
+Built secure network architecture, the foundation of my AWS environment.
 
 
 ---
