@@ -60,7 +60,7 @@ The network was designed with Availability Zone failure in mind. All critical co
 Different subnet tiers were separated to enforce boundaries between public-facing resources, internal workloads, and sensitive systems. Additionally, network security measures like NACLs and security groups were applied to prevent broad access and harden the network by preventing access and traffic that isn't necessary.
 
 ### Avoiding Cross-AZ Dependency
-NAT gateways and routing were designed to remaing AZ-local to prevent cross-AZ traffic dependencies, reduce blast radius, and avoid unnecessary latency.
+NAT gateways and routing were designed to remain AZ-local to prevent cross-AZ traffic dependencies, reduce blast radius, and avoid unnecessary latency.
 
 ### Observability  
 Network visibility is a core requirement, flow logs across all subnet tiers ensures the enivronment is ready for monitoring, detection and incident response use cases.
