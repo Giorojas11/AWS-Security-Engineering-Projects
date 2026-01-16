@@ -8,15 +8,11 @@ All infrastructure is built exclusively with Terraform, following least-privileg
 
 ## Program Goals
 
-Build enterprise-grade AWS security architecture from the ground up.
-
-Demonstrate security engineering decision-making, not just service usage.
-
-Generate real detection and incident response telemetry.
-
-Validate controls through intentional attack simulation.
-
-Produce a reviewable, defensible portfolio aligned with industry roles.
+- Build enterprise-grade AWS security architecture from the ground up.
+- Demonstrate security engineering decision-making, not just service usage.
+- Generate real detection and incident response telemetry.
+- Validate controls through intentional attack simulation.
+- Produce a reviewable, defensible portfolio aligned with industry roles.
 
 This program is intentionally designed to mirror how modern cloud security environments are built and operated.
 
