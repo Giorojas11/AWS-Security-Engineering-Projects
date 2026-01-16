@@ -1,6 +1,6 @@
 # AWS Secure Networking v2
 
-This iteration of the secure networking project represents an evolution of my previous <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/02-Secure-Networking"> project. The original established foundational, secure network architecture with multiple VPCs, routing, NACLs, and segmentation. This version focuses on high availability, fault tolerance, and long-term scalability aligned with production-grade AWS environments. 
+This iteration of the secure networking project represents an evolution of my previous <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/02-Secure-Networking"> secure networking project </a>. The original established foundational, secure network architecture with multiple VPCs, routing, NACLs, and segmentation. This version focuses on high availability, fault tolerance, and long-term scalability aligned with production-grade AWS environments. 
 
 This is a major refinement of my previous my network architecture, along with a refactoring of my Terraform code that will be used in future cloud security projects.
 
