@@ -24,7 +24,7 @@ This program is intentionally designed to mirror how modern cloud security envir
 
 ## 📁 Project Index
 
-### **2. Secure Networking** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/Networking-Terraform"> Link </a>
+### **2. Secure Networking** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/02-Secure-Networking"> Link </a>
 Built secure network architecture, the foundation of my AWS environment.
 
 
