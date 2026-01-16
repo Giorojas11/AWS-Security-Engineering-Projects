@@ -8,7 +8,7 @@ This is a major refinement of my previous my network architecture and refactorin
 1. [Network Diagram](#network-diagram)
    - [Before](#before)
    - [After](#after)
-2. [Key Enhancments](key-enhancements)
+2. [Key Enhancments](#key-enhancements)
    - [Multi-AZ Deployment](#1-multi-az-deployment)
    - [Inclusion of the Isolated Subnet](#2-inclusion-of-the-isolated-subnet)
    - [Explicit Routing, NACLs, & Security Groups](#3-explicit-routing-nacls--security-groups)
