@@ -23,7 +23,7 @@ This program is intentionally designed to mirror how modern cloud security envir
 ### **2. Secure Networking** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/02-Secure-Networking"> Link </a>
 Built secure network architecture, the foundation of my AWS environment.
 
-### **2a. Secure Networking Updated** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/02a-Secure-Networking-Updated"> Link </a>
+### **2a. Secure Networking Updated** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/02a-Secure-Networking-v2"> Link </a>
 Updated my network architecture improving availability and fault tolerance. 
 
 
