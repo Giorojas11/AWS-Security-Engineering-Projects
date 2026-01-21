@@ -1,4 +1,4 @@
-# Organizations, Identity Governance, & Preventive Security
+# Identity Governance & Preventive Security Control
 
   This project implements enterprise-grade identity governance and preventive security controls using AWS Organizations, IAM Identity Center, Service Control Policies (SCPs), and IAM Access Analyzer.
 
