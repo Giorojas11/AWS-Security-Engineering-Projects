@@ -38,9 +38,8 @@ This project is the identity and governance foundation for future security contr
 - Log Archives Account - *Future centralized logging
 
 
-<img width="936" height="630" alt="cliaccounts" src="https://github.com/user-attachments/assets/37b60a9a-4090-4a12-9660-5de11ccd1773" />
 
-<img width="936" height="630" alt="cliaccounts" src="https://github.com/user-attachments/assets/04f63e3f-bb7e-4e5e-962d-6066f77afa01" />
+<img width="936" height="630" alt="cliaccounts" src="https://github.com/user-attachments/assets/d280b83f-c69f-451c-8918-fa43fb3732ed" />
 
 ```
 resource "aws_organizations_account" "security" {
@@ -72,7 +71,7 @@ resource "aws_organizations_account" "prod" {
 
 
 
-<img width="833" height="629" alt="OUs-accts" src="https://github.com/user-attachments/assets/00d78c75-40d0-46fa-a4d0-4b288da1f014" />
+<img width="833" height="629" alt="OUs-accts" src="https://github.com/user-attachments/assets/007e37ab-561f-48ff-8836-b64c1939aeea" />
 
 ```
 resource "aws_organizations_organizational_unit" "security" {
@@ -97,7 +96,9 @@ resource "aws_organizations_organizational_unit" "log_archive" {
 - Developer Group
 
 
-<img width="1610" height="318" alt="grps" src="https://github.com/user-attachments/assets/d5ab4a74-f7c5-4a1b-bf51-b1e75b313721" />
+
+
+<img width="1610" height="318" alt="grps" src="https://github.com/user-attachments/assets/9d7d911a-8cbf-4af6-bc83-a83f56236d5b" />
 
 ```
 resource "aws_identitystore_group" "security" {
@@ -125,7 +126,8 @@ resource "aws_identitystore_group" "dev" {
 
 
 
-<img width="665" height="368" alt="identity-users" src="https://github.com/user-attachments/assets/65b25856-8a05-458c-853f-4268a5f7007d" />
+
+<img width="665" height="368" alt="identity-users" src="https://github.com/user-attachments/assets/72226ad2-b246-49f7-a03e-ed9532303e73" />
 
 ```
 resource "aws_identitystore_user" "security_analyst" {
@@ -350,25 +352,25 @@ Without ALL features, SCPs and delegated security services won't work. This woul
 
 
 
-<img width="1623" height="627" alt="adminperms" src="https://github.com/user-attachments/assets/ca1744c7-dbc2-43ff-94f6-f500c074e651" />
-<img width="1616" height="619" alt="devperms" src="https://github.com/user-attachments/assets/f9d107e9-ab72-4c2b-b5be-1e2cc93a0942" />
-<img width="1629" height="661" alt="secperms" src="https://github.com/user-attachments/assets/94b7640a-87d2-4162-9a73-36aa55353241" />
+
+<img width="1623" height="627" alt="adminperms" src="https://github.com/user-attachments/assets/bd6f4b1d-951e-4af7-906a-36faad81cd42" />
+<img width="1616" height="619" alt="devperms" src="https://github.com/user-attachments/assets/a671a342-6010-405d-a6ba-3c96901bcca2" />
+<img width="1629" height="661" alt="secperms" src="https://github.com/user-attachments/assets/25b64735-0e3e-40b3-8eb3-1e32587538bd" />
+
 
 
 
 ### Users to Groups
-<img width="1591" height="518" alt="usergroupadmin" src="https://github.com/user-attachments/assets/1af53fdb-d851-44de-8762-cf7e0867f914" />
-<img width="1593" height="535" alt="usergroupdev" src="https://github.com/user-attachments/assets/735e66ad-353e-44e0-85cf-21a98e0ce082" />
-<img width="1608" height="532" alt="usergroupsec" src="https://github.com/user-attachments/assets/a0868680-cf48-4159-bb8e-bed53496a35b" />
-
+<img width="1591" height="518" alt="usergroupadmin" src="https://github.com/user-attachments/assets/3eb71ebc-1fa5-46dc-8a52-936d8b4378e2" />
+<img width="1593" height="535" alt="usergroupdev" src="https://github.com/user-attachments/assets/b0e93421-b85b-4dc5-b3dd-81bb019e49e5" />
+<img width="1608" height="532" alt="usergroupsec" src="https://github.com/user-attachments/assets/2cebc559-d133-45be-8ad1-47e0bc6b02e2" />
 
 
 
 ### Groups to Accounts
-<img width="1601" height="682" alt="adminpermaccount" src="https://github.com/user-attachments/assets/ebff9b23-dcb7-4bf6-a314-07f2d010106d" />
-<img width="1589" height="683" alt="devpermaccount" src="https://github.com/user-attachments/assets/8d973327-a100-4a59-a8ab-1dd545982174" />
-<img width="1647" height="690" alt="secpermsaccounts" src="https://github.com/user-attachments/assets/6aa8507e-3a8c-475c-ab92-a1480334458e" />
-
+<img width="1601" height="682" alt="adminpermaccount" src="https://github.com/user-attachments/assets/ba1a76e5-6876-49b6-840b-df0dbb60e0c8" />
+<img width="1589" height="683" alt="devpermaccount" src="https://github.com/user-attachments/assets/4d80eaf3-1781-41e0-91c8-cb29adac7dde" />
+<img width="1647" height="690" alt="secpermsaccounts" src="https://github.com/user-attachments/assets/0f881e36-1e2e-42eb-89b6-842415dd4120" />
 
 
 ## 5. Service Control Policies - Preventative Guardrails
@@ -386,7 +388,9 @@ SCPs are organization-level policies that are used to enforce non-negotiable sec
 - Enforces executive-level security decisions consistently across all accounts.
 
 
-<img width="1334" height="716" alt="denysecdisablescp" src="https://github.com/user-attachments/assets/f7ab96b3-6fe3-47a3-afd1-6c3669b51304" />
+
+
+<img width="1334" height="716" alt="denysecdisablescp" src="https://github.com/user-attachments/assets/9aff1804-bb2d-426b-9526-7eeb541278f1" />
 
 ```
 resource "aws_organizations_policy" "deny_disable_security" {
@@ -441,8 +445,7 @@ resource "aws_organizations_policy_attachment" "security_attach_security" {
 - Cross-account access paths
 
 
-
-<img width="924" height="419" alt="AA-delegated" src="https://github.com/user-attachments/assets/4ec7b7f8-111a-48bf-a328-712db89b6746" />
+<img width="924" height="419" alt="AA-delegated" src="https://github.com/user-attachments/assets/f523ba39-3511-43a1-a7c4-76a0571031be" />
 
 ```
 resource "aws_organizations_delegated_administrator" "access_analyzer" {
@@ -467,7 +470,9 @@ resource "aws_accessanalyzer_analyzer" "org" {
 
   
 
-<img width="626" height="325" alt="Root" src="https://github.com/user-attachments/assets/ee5d500a-f494-4a16-90fb-5dfae6d826ec" />
+
+<img width="626" height="325" alt="Root" src="https://github.com/user-attachments/assets/edf1bf8c-05c1-45a7-b3ef-176af708d0d2" />
+
 
 
 
@@ -511,9 +516,12 @@ This project aims to be framework-aligned, but is not locked to any specific com
 
 
 
-<img width="1796" height="723" alt="policy-sim-admin-poc" src="https://github.com/user-attachments/assets/67755cc1-333a-419f-88fd-ac7db828b62e" />
-<img width="1781" height="824" alt="secanalyst-policysim-poc" src="https://github.com/user-attachments/assets/7091050a-ac3a-4c6a-a2a4-9e3af41a2aac" />
-<img width="1809" height="758" alt="policysim-PoC-dev1" src="https://github.com/user-attachments/assets/ffadc8bd-f6d3-4d0a-bc0d-1aba0fd7e847" />
+
+
+<img width="1796" height="723" alt="policy-sim-admin-poc" src="https://github.com/user-attachments/assets/bf2d9282-7df4-413d-a67f-00438b6dde1b" />
+<img width="1809" height="758" alt="policysim-PoC-dev1" src="https://github.com/user-attachments/assets/713acf0e-2e7f-438c-99a5-ce3959ad29c6" />
+<img width="1781" height="824" alt="secanalyst-policysim-poc" src="https://github.com/user-attachments/assets/35b4f296-7c31-4702-a792-979a4100e1c4" />
+
 
 
 
@@ -522,8 +530,11 @@ This project aims to be framework-aligned, but is not locked to any specific com
 
 
 
-<img width="1566" height="755" alt="admin-iam-access" src="https://github.com/user-attachments/assets/21749faf-5f83-4e7e-a6d1-de81474661ac" />
-<img width="1600" height="598" alt="dev-iam-denied" src="https://github.com/user-attachments/assets/db2bbc9a-b589-45ff-9d5f-10805005029f" />
+
+
+<img width="1566" height="755" alt="admin-iam-access" src="https://github.com/user-attachments/assets/dc8930a7-a4be-47d4-b90c-d2bb8d897376" />
+<img width="1600" height="598" alt="dev-iam-denied" src="https://github.com/user-attachments/assets/03d517c9-de56-4496-be45-eaf2d582470b" />
+
 
 
 
@@ -531,7 +542,10 @@ This project aims to be framework-aligned, but is not locked to any specific com
 
 
 
-<img width="1903" height="692" alt="access-analyzer-finding" src="https://github.com/user-attachments/assets/2f84c0ef-db42-4102-9e8e-53304d49a2b4" />
+
+
+<img width="1903" height="692" alt="access-analyzer-finding" src="https://github.com/user-attachments/assets/1fe6a563-0bb8-42df-9ef4-f4c6b2764559" />
+
 
 
 
