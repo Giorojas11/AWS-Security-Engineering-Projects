@@ -352,7 +352,8 @@ Without ALL features, SCPs and delegated security services won't work. This woul
 
 
 
-### Policy to Permission Set
+
+### Policy --> Permission Set
 <img width="1623" height="627" alt="adminperms" src="https://github.com/user-attachments/assets/bd6f4b1d-951e-4af7-906a-36faad81cd42" />
 <img width="1616" height="619" alt="devperms" src="https://github.com/user-attachments/assets/a671a342-6010-405d-a6ba-3c96901bcca2" />
 <img width="1629" height="661" alt="secperms" src="https://github.com/user-attachments/assets/25b64735-0e3e-40b3-8eb3-1e32587538bd" />
@@ -360,7 +361,7 @@ Without ALL features, SCPs and delegated security services won't work. This woul
 
 
 
-### Permission Set to Account
+### Permission Set --> Account
 <img width="1601" height="682" alt="adminpermaccount" src="https://github.com/user-attachments/assets/ba1a76e5-6876-49b6-840b-df0dbb60e0c8" />
 <img width="1589" height="683" alt="devpermaccount" src="https://github.com/user-attachments/assets/4d80eaf3-1781-41e0-91c8-cb29adac7dde" />
 <img width="1647" height="690" alt="secpermsaccounts" src="https://github.com/user-attachments/assets/0f881e36-1e2e-42eb-89b6-842415dd4120" />
@@ -368,13 +369,15 @@ Without ALL features, SCPs and delegated security services won't work. This woul
 
 
 
-### Users to Groups
+### Users --> Groups
 <img width="1591" height="518" alt="usergroupadmin" src="https://github.com/user-attachments/assets/3eb71ebc-1fa5-46dc-8a52-936d8b4378e2" />
 <img width="1593" height="535" alt="usergroupdev" src="https://github.com/user-attachments/assets/b0e93421-b85b-4dc5-b3dd-81bb019e49e5" />
 <img width="1608" height="532" alt="usergroupsec" src="https://github.com/user-attachments/assets/2cebc559-d133-45be-8ad1-47e0bc6b02e2" />
 
 
-### Groups to Accounts
+
+
+### Groups --> Accounts via Permission Set
 <img width="753" height="643" alt="admin-group-to-account" src="https://github.com/user-attachments/assets/d12b3705-3116-4897-a6cb-23938f2436f7" />
 <img width="750" height="646" alt="dev-group-to-account" src="https://github.com/user-attachments/assets/5c03573d-7a18-4ea8-b76a-b69f7c32621c" />
 <img width="763" height="634" alt="sec-group-to-account" src="https://github.com/user-attachments/assets/125a699b-bfeb-499a-8e09-78c63b46c7a9" />
