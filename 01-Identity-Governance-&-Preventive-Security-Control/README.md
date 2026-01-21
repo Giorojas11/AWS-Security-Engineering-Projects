@@ -38,6 +38,7 @@ This project is the identity and governance foundation for future security contr
 - Log Archives Account - *Future centralized logging
 
 
+<img width="936" height="630" alt="cliaccounts" src="https://github.com/user-attachments/assets/37b60a9a-4090-4a12-9660-5de11ccd1773" />
 
 <img width="936" height="630" alt="cliaccounts" src="https://github.com/user-attachments/assets/04f63e3f-bb7e-4e5e-962d-6066f77afa01" />
 
