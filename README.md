@@ -20,7 +20,7 @@ This program is intentionally designed to mirror how modern cloud security envir
 
 ## 📁 Project Index
 
-### **1. Organizations, Identity Governance, & Preventive Security - <a href="https://github.com/Giorojas11/AWS-Security-Engineering-Projects/tree/main/01-Organization-Identity-Governance-%26-Preventive-Security"> Link </a>
+### **1. Organizations, Identity Governance, & Preventive Security** - <a href="https://github.com/Giorojas11/AWS-Security-Engineering-Projects/tree/main/01-Organization-Identity-Governance-%26-Preventive-Security"> Link </a>
 Built IAM and governance for a multi-account environment using AWS Organizations, IAM Identity Center, and IAM Access Analyzer.
 
 ### **2. Secure Networking** - <a href="https://github.com/Giorojas11/AWS-Projects/tree/main/02-Secure-Networking"> Link </a>
