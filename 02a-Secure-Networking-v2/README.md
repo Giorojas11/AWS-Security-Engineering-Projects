@@ -415,25 +415,25 @@ resource "aws_network_acl" "prod_use1_nacl_public_a" {
         from_port  = 0
         to_port    = 0
     }
-
-    # Allow ephemeral response traffic (1024-65535)
+    
+    # Allow HTTPS
     ingress {
         rule_no    = 120
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
-        from_port  = 1024
-        to_port    = 65535
+        from_port  = 443
+        to_port    = 443
     }
 
-    # Allow HTTPS
+    # Allow ephemeral response traffic (1024-65535)
     ingress {
         rule_no    = 130
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
-        from_port  = 443
-        to_port    = 443
+        from_port  = 1024
+        to_port    = 65535
     }
 
     # Deny All 
@@ -446,11 +446,51 @@ resource "aws_network_acl" "prod_use1_nacl_public_a" {
         to_port    = 0
     }
 
-    # Allow all outbound
+    # Allow VPC traffic
     egress {
         rule_no    = 100
         protocol   = "-1"
         action     = "allow"
+        cidr_block = var.prod_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
+    }
+
+    # Allow peered traffic - sec-use1-vpc
+    egress {
+        rule_no    = 110
+        protocol   = "-1"
+        action     = "allow"
+        cidr_block = var.sec_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
+    }
+    
+    # Allow HTTPS
+    egress {
+        rule_no    = 120
+        protocol   = "tcp"
+        action     = "allow"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 443
+        to_port    = 443
+    }
+
+    # Allow ephemeral response traffic (1024-65535)
+    egress {
+        rule_no    = 130
+        protocol   = "tcp"
+        action     = "allow"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 1024
+        to_port    = 65535
+    }
+
+    # Deny All 
+    egress {
+        rule_no    = 200
+        protocol   = "-1"
+        action     = "deny"
         cidr_block = "0.0.0.0/0"
         from_port  = 0
         to_port    = 0
@@ -469,9 +509,19 @@ resource "aws_network_acl_association" "prod_use1_nacl_public_a_assoc" {
 resource "aws_network_acl" "prod_use1_nacl_private_a" {
     vpc_id = aws_vpc.prod_use1_vpc.id
    
-    # Allow ephemeral response traffic (1024-65535)
+    # Allow VPC Traffic
     ingress {
         rule_no    = 100
+        protocol   = "-1"
+        action     = "allow"
+        cidr_block = var.prod_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
+    }
+    
+    # Allow ephemeral response traffic (1024-65535)
+    ingress {
+        rule_no    = 110
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
@@ -479,25 +529,35 @@ resource "aws_network_acl" "prod_use1_nacl_private_a" {
         to_port    = 65535
     }
 
+    # Deny All 
     ingress {
-        rule_no    = 110
+        rule_no    = 200
         protocol   = "-1"
-        action     = "allow"
-        cidr_block = var.prod_vpc_cidr_block
-        from_port  = 0
-        to_port    = 0
-    }
-
-    # Allow all outbound for Internet access from NAT
-    egress {
-        rule_no    = 100
-        protocol   = "-1"
-        action     = "allow"
+        action     = "deny"
         cidr_block = "0.0.0.0/0"
         from_port  = 0
         to_port    = 0
     }
 
+    # Allow outbound HTTPS for Internet access from NAT
+    egress {
+        rule_no    = 100
+        protocol   = "tcp"
+        action     = "allow"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 443
+        to_port    = 443
+    }
+
+    # Deny All 
+    egress {
+        rule_no    = 200
+        protocol   = "-1"
+        action     = "deny"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 0
+        to_port    = 0
+    }
     tags = {
         Name = "prod-use1-nacl-private-a"
     }
@@ -586,25 +646,25 @@ resource "aws_network_acl" "prod_use1_nacl_public_b" {
         from_port  = 0
         to_port    = 0
     }
-
-    # Allow ephemeral response traffic (1024-65535)
+    
+    # Allow HTTPS
     ingress {
         rule_no    = 120
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
-        from_port  = 1024
-        to_port    = 65535
+        from_port  = 443
+        to_port    = 443
     }
 
-    # Allow HTTPS
+    # Allow ephemeral response traffic (1024-65535)
     ingress {
         rule_no    = 130
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
-        from_port  = 443
-        to_port    = 443
+        from_port  = 1024
+        to_port    = 65535
     }
 
     # Deny All 
@@ -617,11 +677,51 @@ resource "aws_network_acl" "prod_use1_nacl_public_b" {
         to_port    = 0
     }
 
-    # Allow all outbound
+    # Allow VPC traffic
     egress {
         rule_no    = 100
         protocol   = "-1"
         action     = "allow"
+        cidr_block = var.prod_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
+    }
+
+    # Allow peered traffic from sec-use1-vpc
+    egress {
+        rule_no    = 110
+        protocol   = "-1"
+        action     = "allow"
+        cidr_block = var.sec_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
+    }
+    
+    # Allow HTTPS
+    egress {
+        rule_no    = 120
+        protocol   = "tcp"
+        action     = "allow"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 443
+        to_port    = 443
+    }
+
+    # Allow ephemeral response traffic (1024-65535)
+    egress {
+        rule_no    = 130
+        protocol   = "tcp"
+        action     = "allow"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 1024
+        to_port    = 65535
+    }
+
+    # Deny All 
+    egress {
+        rule_no    = 200
+        protocol   = "-1"
+        action     = "deny"
         cidr_block = "0.0.0.0/0"
         from_port  = 0
         to_port    = 0
@@ -640,9 +740,19 @@ resource "aws_network_acl_association" "prod_use1_nacl_public_b_assoc" {
 resource "aws_network_acl" "prod_use1_nacl_private_b" {
     vpc_id = aws_vpc.prod_use1_vpc.id
    
-    # Allow ephemeral response traffic (1024-65535)
+    # Allow VPC Traffic
     ingress {
         rule_no    = 100
+        protocol   = "-1"
+        action     = "allow"
+        cidr_block = var.prod_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
+    }
+    
+    # Allow ephemeral response traffic (1024-65535)
+    ingress {
+        rule_no    = 110
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
@@ -650,20 +760,31 @@ resource "aws_network_acl" "prod_use1_nacl_private_b" {
         to_port    = 65535
     }
 
+    # Deny All 
     ingress {
-        rule_no    = 110
+        rule_no    = 200
         protocol   = "-1"
-        action     = "allow"
-        cidr_block = var.prod_vpc_cidr_block
+        action     = "deny"
+        cidr_block = "0.0.0.0/0"
         from_port  = 0
         to_port    = 0
     }
 
-    # Allow all outbound for Internet access from NAT
+    # Allow outbound HTTPS for Internet access from NAT
     egress {
         rule_no    = 100
-        protocol   = "-1"
+        protocol   = "tcp"
         action     = "allow"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 443
+        to_port    = 443
+    }
+
+    # Deny All 
+    egress {
+        rule_no    = 200
+        protocol   = "-1"
+        action     = "deny"
         cidr_block = "0.0.0.0/0"
         from_port  = 0
         to_port    = 0
@@ -748,7 +869,7 @@ resource "aws_network_acl" "sec_use1_nacl_public_a" {
         to_port    = 0
     }
 
-    # Allow peered traffic from prod-use1-vpc
+    # Allow peered traffic - prod-use1-vpc
     ingress {
         rule_no    = 110
         protocol   = "-1"
@@ -757,25 +878,25 @@ resource "aws_network_acl" "sec_use1_nacl_public_a" {
         from_port  = 0
         to_port    = 0
     }
-
-    # Allow ephemeral response traffic (1024-65535)
+    
+    # Allow HTTPS
     ingress {
         rule_no    = 120
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
-        from_port  = 1024
-        to_port    = 65535
+        from_port  = 443
+        to_port    = 443
     }
 
-    # Allow HTTPS
+    # Allow ephemeral response traffic (1024-65535)
     ingress {
         rule_no    = 130
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
-        from_port  = 443
-        to_port    = 443
+        from_port  = 1024
+        to_port    = 65535
     }
 
     # Deny All 
@@ -788,11 +909,51 @@ resource "aws_network_acl" "sec_use1_nacl_public_a" {
         to_port    = 0
     }
 
-    # Allow all outbound
+    # Allow VPC traffic
     egress {
         rule_no    = 100
         protocol   = "-1"
         action     = "allow"
+        cidr_block = var.sec_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
+    }
+
+    # Allow peered traffic - prod-use1-vpc
+    egress {
+        rule_no    = 110
+        protocol   = "-1"
+        action     = "allow"
+        cidr_block = var.prod_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
+    }
+    
+    # Allow HTTPS
+    egress {
+        rule_no    = 120
+        protocol   = "tcp"
+        action     = "allow"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 443
+        to_port    = 443
+    }
+
+    # Allow ephemeral response traffic (1024-65535)
+    egress {
+        rule_no    = 130
+        protocol   = "tcp"
+        action     = "allow"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 1024
+        to_port    = 65535
+    }
+
+    # Deny All 
+    egress {
+        rule_no    = 200
+        protocol   = "-1"
+        action     = "deny"
         cidr_block = "0.0.0.0/0"
         from_port  = 0
         to_port    = 0
@@ -824,7 +985,7 @@ resource "aws_network_acl" "sec_use1_nacl_public_b" {
         to_port    = 0
     }
 
-    # Allow peered traffic from prod-use1-vpc
+    # Allow peered traffic - prod-use1-vpc
     ingress {
         rule_no    = 110
         protocol   = "-1"
@@ -833,25 +994,25 @@ resource "aws_network_acl" "sec_use1_nacl_public_b" {
         from_port  = 0
         to_port    = 0
     }
-
-    # Allow ephemeral response traffic (1024-65535)
+    
+    # Allow HTTPS
     ingress {
         rule_no    = 120
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
-        from_port  = 1024
-        to_port    = 65535
+        from_port  = 443
+        to_port    = 443
     }
 
-    # Allow HTTPS
+    # Allow ephemeral response traffic (1024-65535)
     ingress {
         rule_no    = 130
         protocol   = "tcp"
         action     = "allow"
         cidr_block = "0.0.0.0/0"
-        from_port  = 443
-        to_port    = 443
+        from_port  = 1024
+        to_port    = 65535
     }
 
     # Deny All 
@@ -864,11 +1025,51 @@ resource "aws_network_acl" "sec_use1_nacl_public_b" {
         to_port    = 0
     }
 
-    # Allow all outbound
+    # Allow VPC traffic
     egress {
         rule_no    = 100
         protocol   = "-1"
         action     = "allow"
+        cidr_block = var.sec_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
+    }
+
+    # Allow peered traffic - prod-use1-vpc
+    egress {
+        rule_no    = 110
+        protocol   = "-1"
+        action     = "allow"
+        cidr_block = var.prod_vpc_cidr_block
+        from_port  = 0
+        to_port    = 0
+    }
+    
+    # Allow HTTPS
+    egress {
+        rule_no    = 120
+        protocol   = "tcp"
+        action     = "allow"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 443
+        to_port    = 443
+    }
+
+    # Allow ephemeral response traffic (1024-65535)
+    egress {
+        rule_no    = 130
+        protocol   = "tcp"
+        action     = "allow"
+        cidr_block = "0.0.0.0/0"
+        from_port  = 1024
+        to_port    = 65535
+    }
+
+    # Deny All 
+    egress {
+        rule_no    = 200
+        protocol   = "-1"
+        action     = "deny"
         cidr_block = "0.0.0.0/0"
         from_port  = 0
         to_port    = 0
@@ -911,10 +1112,19 @@ resource "aws_security_group" "prod_use1_sg_public_a" {
     }
 
     egress {
-        from_port   = 0
-        to_port     = 0
-        protocol    = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
+        description  = "HTTPS"
+        from_port    = 443
+        to_port      = 443
+        protocol     = "tcp"
+        cidr_blocks  = ["0.0.0.0/0"]
+    }
+
+    egress {
+        description  = "Allow traffic from peered VPC"
+        from_port    = 0
+        to_port      = 0
+        protocol     = "-1"
+        cidr_blocks  = [aws_vpc.sec_use1_vpc.cidr_block]
     }
 
     tags = {
@@ -927,11 +1137,18 @@ resource "aws_security_group" "prod_use1_sg_private_a" {
     description = "Private Subnet traffic"
     vpc_id      = aws_vpc.prod_use1_vpc.id
 
+    ingress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = [aws_security_group.prod_use1_sg_isolated_a]
+    }
+
     egress {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
+        cidr_blocks = [aws_security_group.prod_use1_sg_isolated_a]
     }
 
     tags = {
@@ -948,14 +1165,14 @@ resource "aws_security_group" "prod_use1_sg_isolated_a" {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
-        cidr_blocks = [aws_subnet.prod_use1_private_a.cidr_block]
+        cidr_blocks = [aws_security_group.prod_use1_sg_private_a]
     }
 
     egress {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
-        cidr_blocks = [aws_subnet.prod_use1_private_a.cidr_block]
+        cidr_blocks = [aws_security_group.prod_use1_sg_private_a]
     }
 
     tags = {
@@ -988,10 +1205,19 @@ resource "aws_security_group" "prod_use1_sg_public_b" {
     }
 
     egress {
-        from_port   = 0
-        to_port     = 0
-        protocol    = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
+        description  = "HTTPS"
+        from_port    = 443
+        to_port      = 443
+        protocol     = "tcp"
+        cidr_blocks  = ["0.0.0.0/0"]
+    }
+
+    egress {
+        description  = "Allow traffic from peered VPC"
+        from_port    = 0
+        to_port      = 0
+        protocol     = "-1"
+        cidr_blocks  = [aws_vpc.sec_use1_vpc.cidr_block]
     }
 
     tags = {
@@ -1004,11 +1230,18 @@ resource "aws_security_group" "prod_use1_sg_private_b" {
     description = "Private Subnet traffic"
     vpc_id      = aws_vpc.prod_use1_vpc.id
 
+    ingress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = [aws_security_group.prod_use1_sg_isolated_b]
+    }
+    
     egress {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
+        cidr_blocks = [aws_security_group.prod_use1_sg_isolated_b]
     }
 
     tags = {
@@ -1025,14 +1258,14 @@ resource "aws_security_group" "prod_use1_sg_isolated_b" {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
-        cidr_blocks = [aws_subnet.prod_use1_private_b.cidr_block]
+        cidr_blocks = [aws_security_group.prod_use1_sg_private_b]
     }
     
     egress {
         from_port   = 0
         to_port     = 0
         protocol    = "-1"
-        cidr_blocks = [aws_subnet.prod_use1_private_b.cidr_block]
+        cidr_blocks = [aws_security_group.prod_use1_sg_private_b]
     }
 
     tags = {
@@ -1065,10 +1298,19 @@ resource "aws_security_group" "sec_use1_sg_public_a" {
     }
 
     egress {
-        from_port   = 0
-        to_port     = 0
-        protocol    = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
+        description  = "HTTPS"
+        from_port    = 443
+        to_port      = 443
+        protocol     = "tcp"
+        cidr_blocks  = ["0.0.0.0/0"]
+    }
+    
+    egress {
+        description  = "Allow traffic from peered VPC"
+        from_port    = 0
+        to_port      = 0
+        protocol     = "-1"
+        cidr_blocks  = [aws_vpc.prod_use1_vpc.cidr_block]
     }
 
     tags = {
@@ -1102,10 +1344,19 @@ resource "aws_security_group" "sec_use1_sg_public_b" {
     }
 
     egress {
-        from_port   = 0
-        to_port     = 0
-        protocol    = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
+        description  = "HTTPS"
+        from_port    = 443
+        to_port      = 443
+        protocol     = "tcp"
+        cidr_blocks  = ["0.0.0.0/0"]
+    }
+    
+    egress {
+        description  = "Allow traffic from peered VPC"
+        from_port    = 0
+        to_port      = 0
+        protocol     = "-1"
+        cidr_blocks  = [aws_vpc.prod_use1_vpc.cidr_block]
     }
 
     tags = {
